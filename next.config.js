@@ -6,7 +6,10 @@ const nextConfig = {
 		minimumCacheTTL: 1000 * 60 * 60 * 24 * 7,
 		domains: ['cdn-staging.nodeguardians.com'],
 		deviceSizes: [660, 900, 1200, 1600, 1800]
-	}
+	},
+	compiler: {
+    styledComponents: true,
+  },
 };
 
 module.exports = nextConfig;
