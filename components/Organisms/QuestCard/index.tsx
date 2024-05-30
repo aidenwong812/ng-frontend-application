@@ -6,6 +6,7 @@ import XpDisplay from '@/components/Atoms/XpDisplay'
 import Image from 'next/image'
 import styled from 'styled-components'
 import { QuestProps } from './interface'
+import { useRouter } from 'next/navigation'
 
 const Wrapped = styled.div`
   display: inline-block;
@@ -23,6 +24,7 @@ const Wrapped = styled.div`
     0 5px
   );
   background-color: #212121;
+  cursor: pointer;
 `
 
 const Container = styled.div`
@@ -47,12 +49,6 @@ const Container = styled.div`
     0 5px
   );
   background-color: black;
-`
-
-const HeadingContainer = styled.div`
-  aspect-ratio: 476/86;
-  width: 100%;
-  overflow: hidden;
 `
 
 const Heading = styled.img`
@@ -110,9 +106,10 @@ const CTFButton = styled.div`
   width: 40px;
 `
 
-const QuestCard: React.FC<QuestProps> = ({ title, cover, language, difficulty, rewards, type }) => {
+const QuestCard: React.FC<QuestProps> = ({ title, cover, language, difficulty, rewards, type, slug }) => {
+  const router = useRouter()
   return (
-    <Wrapped>
+    <Wrapped onClick={() => router.push(`/quests/${slug}`)}>
       <Container>
         <Heading src={cover} />
         <GridDiv>
@@ -125,7 +122,7 @@ const QuestCard: React.FC<QuestProps> = ({ title, cover, language, difficulty, r
               <SolidityButton>
                 <ShapedButton>
                   <Image src="/assets/solidity.svg" alt="Solidity" width={16} height={16} />
-                  <p>{language.lable}</p>
+                  <p>{language.label}</p>
                 </ShapedButton>
               </SolidityButton>
               <SwordButton>
@@ -149,7 +146,7 @@ const QuestCard: React.FC<QuestProps> = ({ title, cover, language, difficulty, r
               </CTFButton>
             </ButtonGroup>
           </LeftContainer>
-          <GoldDisplay value='180' />
+          <GoldDisplay value={rewards.gold.toString()} />
         </GridDiv>
       </Container>
     </Wrapped>

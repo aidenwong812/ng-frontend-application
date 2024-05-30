@@ -5,6 +5,7 @@ export async function GET(req: Request) {
 	try {
 		const { searchParams } = new URL(req.url);
 		const questSlug = searchParams.get('questSlug');
+		console.log(questSlug)
 
 		if (!questSlug) {
 			throw new Error('questSlug is required');

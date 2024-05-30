@@ -42,6 +42,7 @@ const Quests: React.FC = () => {
                 difficulty={quest.difficulty}
                 rewards={quest.rewards}
                 type={quest.type}
+                slug={quest.slug}
               />
             )
           })

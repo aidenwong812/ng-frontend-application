@@ -2,7 +2,7 @@ export interface QuestProps {
   title: string
   cover: string
   language: {
-    lable: string
+    label: string
     id: string
   }
   difficulty: number
@@ -14,4 +14,5 @@ export interface QuestProps {
     label: string
     id: string
   }
+  slug: string
 }

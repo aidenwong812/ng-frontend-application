@@ -5,6 +5,7 @@ import ShapedButton from '@/components/Atoms/ShapedButton'
 import XpDisplay from '@/components/Atoms/XpDisplay'
 import Image from 'next/image'
 import styled from 'styled-components'
+import { QuestProps } from '../QuestCard/interface'
 
 const Wrapped = styled.div`
   display: inline-block;
@@ -49,7 +50,19 @@ const Container = styled.div`
 `
 
 const Heading = styled.img`
+  aspect-ratio: 16/9;
   width: 100%;
+  overflow: hidden;
+  clip-path: polygon(
+    5px 0,
+    calc(100% - 5px) 0,
+    100% 5px,
+    100% calc(100% - 5px),
+    calc(100% - 5px) 100%,
+    5px 100%,
+    0 calc(100% - 5px),
+    0 5px
+  );
 `
 
 const FlexDiv = styled.div`
@@ -105,26 +118,27 @@ const SwordButton = styled.div`
 const BackButton = styled.div`
   width: 120px;
   height: 40px;
+  cursor: pointer;
 `
 
 const AirdropButton = styled.div`
   width: 350px;
 `
 
-const QuestOne: React.FC = () => {
+const QuestOne: React.FC<QuestProps> = ({ title, cover, language, difficulty, rewards, type, slug }) => {
   return (
     <Wrapped>
       <Container>
-        <Heading src="/assets/quest.png" />
+        <Heading src={cover} />
         <InnerContainer>
           <FlexColumnDiv>
-            <QuestName>Quest name</QuestName>
+            <QuestName>{title}</QuestName>
             <FlexDiv>
               <ButtonGroup>
                 <SolidityButton>
                   <ShapedButton>
                     <Image src="/assets/solidity.svg" alt="Solidity" width={16} height={16} />
-                    <p>Solidity</p>
+                    <p>{language.label}</p>
                   </ShapedButton>
                 </SolidityButton>
                 <SwordButton>
@@ -138,14 +152,14 @@ const QuestOne: React.FC = () => {
                 </SwordButton>
               </ButtonGroup>
               <FlexDiv>
-                <GoldDisplay value='180' />
-                <XpDisplay value='14000' />
+                <GoldDisplay value={rewards.gold.toString()} />
+                <XpDisplay value={rewards.expPoints.toString()} />
               </FlexDiv>
             </FlexDiv>
             <QuestDescription>Trading of cryptoassets in DeFi relies on new and unique matching mechanisms. One widely used mechanism in traditional finance is the centralised limit order book, which entails keeping electronic records of all outstanding orders. Likewise, Trading of cryptoassets in DeFi relies on new and unique matching mechanisms.</QuestDescription>
           </FlexColumnDiv>
           <ButtonGroup1>
-            <BackButton>
+            <BackButton onClick={() => window.history.back()}>
               <ShapedButton>
                 <p style={{ color: '#B69E72', fontSize: 16 + 'px' }}>Go Back</p>
               </ShapedButton>

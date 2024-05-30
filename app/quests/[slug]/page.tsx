@@ -1,6 +1,8 @@
 "use client"
 
 import QuestOne from '@/components/Organisms/QuestOne'
+import { useQuest } from '@/hook/useQuest'
+import { usePathname } from 'next/navigation'
 import styled from 'styled-components'
 
 const Container = styled.div`
@@ -20,10 +22,22 @@ const Background = styled.img`
 `
 
 const Quest: React.FC = () => {
+  const router = usePathname()
+  const slug = router.split('/').slice(-1)[0]
+  const { Quest } = useQuest(slug)
   return (
     <Container>
       <Background src="/assets/desktop.png" />
-      <QuestOne />
+      <QuestOne
+        key={Quest.slug}
+        title={Quest.title}
+        cover={Quest.cover}
+        language={Quest.language}
+        difficulty={Quest.difficulty}
+        rewards={Quest.rewards}
+        type={Quest.type}
+        slug={Quest.slug}
+      />
     </Container>
   )
 }
