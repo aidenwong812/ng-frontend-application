@@ -1,5 +1,6 @@
 import { Cinzel, Inter } from 'next/font/google';
 import { DefaultTheme, createGlobalStyle } from 'styled-components';
+import Background from 'public/assets/background.png';
 
 export const cinzel = Cinzel({ weight: '700', subsets: ['latin'] });
 export const interRegular = Inter({ weight: '400', subsets: ['latin'] });
@@ -21,6 +22,13 @@ const GlobalStyle = createGlobalStyle<{ theme: DefaultTheme }>`
 
 	body {
 		background-color: ${({ theme }) => theme.colors.black};
+		background-image: url(${Background.src});
+		background-repeat: no-repeat;
+		background-size: cover;
+		height: 100vh;
+		margin: 0px;
+		display: flex;
+		flex-direction: column;
 	}
 
 	h1,

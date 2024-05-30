@@ -1,0 +1,11 @@
+<svg width="508" height="230" viewBox="0 0 508 230" fill="none"
+  xmlns="http://www.w3.org/2000/svg">
+  <rect x="12" width="484" height="1" fill="#212121"/>
+  <rect x="12" y="229" width="484" height="1" fill="#212121"/>
+  <rect y="7" width="1" height="216" fill="#212121"/>
+  <rect width="1" height="216" transform="matrix(-1 0 0 1 508 7)" fill="#212121"/>
+  <path d="M5 0L0.0613414 5H0V7H1V5.6L5.6 1H12V0H5Z" fill="#212121"/>
+  <path d="M503 0L507.939 5H508V7H507V5.6L502.4 1H496V0H503Z" fill="#212121"/>
+  <path d="M5 230L0.0613414 225H0V223H1V224.4L5.6 229H12V230H5Z" fill="#212121"/>
+  <path d="M503 230L507.939 225H508V223H507V224.4L502.4 229H496V230H503Z" fill="#212121"/>
+</svg>
