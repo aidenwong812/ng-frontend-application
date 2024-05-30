@@ -1,6 +1,8 @@
 import Header from '@/components/Organisms/Header';
 import { ClientProviders } from './providers';
 import StyledComponentsRegistry from './registry';
+import { StoreProvider, store } from '@/components/jotai/store';
+import { DevTools } from 'jotai-devtools';
 
 export default function RootLayout({
 	// Layouts must accept a children prop.

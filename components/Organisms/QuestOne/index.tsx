@@ -6,6 +6,8 @@ import XpDisplay from '@/components/Atoms/XpDisplay'
 import Image from 'next/image'
 import styled from 'styled-components'
 import { QuestProps } from '../QuestCard/interface'
+import { airdropAtoms } from '@/components/jotai/atom'
+import { useAtom } from 'jotai'
 
 const Wrapped = styled.div`
   display: inline-block;
@@ -123,9 +125,12 @@ const BackButton = styled.div`
 
 const AirdropButton = styled.div`
   width: 350px;
+  cursor: pointer;
 `
 
 const QuestOne: React.FC<QuestProps> = ({ title, cover, language, difficulty, rewards, type, slug }) => {
+  const [airdrop, setAirdrop] = useAtom(airdropAtoms)
+
   return (
     <Wrapped>
       <Container>
@@ -138,7 +143,7 @@ const QuestOne: React.FC<QuestProps> = ({ title, cover, language, difficulty, re
                 <SolidityButton>
                   <ShapedButton>
                     <Image src="/assets/solidity.svg" alt="Solidity" width={16} height={16} />
-                    <p>{language.label}</p>
+                    <p>{language?.label}</p>
                   </ShapedButton>
                 </SolidityButton>
                 <SwordButton>
@@ -152,8 +157,8 @@ const QuestOne: React.FC<QuestProps> = ({ title, cover, language, difficulty, re
                 </SwordButton>
               </ButtonGroup>
               <FlexDiv>
-                <GoldDisplay value={rewards.gold.toString()} />
-                <XpDisplay value={rewards.expPoints.toString()} />
+                <GoldDisplay value={rewards?.gold.toString()} />
+                <XpDisplay value={rewards?.expPoints.toString()} />
               </FlexDiv>
             </FlexDiv>
             <QuestDescription>Trading of cryptoassets in DeFi relies on new and unique matching mechanisms. One widely used mechanism in traditional finance is the centralised limit order book, which entails keeping electronic records of all outstanding orders. Likewise, Trading of cryptoassets in DeFi relies on new and unique matching mechanisms.</QuestDescription>
@@ -164,7 +169,7 @@ const QuestOne: React.FC<QuestProps> = ({ title, cover, language, difficulty, re
                 <p style={{ color: '#B69E72', fontSize: 16 + 'px' }}>Go Back</p>
               </ShapedButton>
             </BackButton>
-            <AirdropButton>
+            <AirdropButton onClick={() => setAirdrop(rewards)}>
               <ShapedButton primary>
                 <p style={{ color: '#080808', fontSize: 16 + 'px' }}>Airdrop Reward To The Guardians</p>
               </ShapedButton>

@@ -29,14 +29,14 @@ const Quest: React.FC = () => {
     <Container>
       <Background src="/assets/desktop.png" />
       <QuestOne
-        key={Quest.slug}
-        title={Quest.title}
-        cover={Quest.cover}
-        language={Quest.language}
-        difficulty={Quest.difficulty}
-        rewards={Quest.rewards}
-        type={Quest.type}
-        slug={Quest.slug}
+        key={Quest?.slug}
+        title={Quest?.title}
+        cover={Quest?.cover}
+        language={Quest?.language}
+        difficulty={Quest?.difficulty}
+        rewards={Quest?.rewards}
+        type={Quest?.type}
+        slug={Quest?.slug}
       />
     </Container>
   )

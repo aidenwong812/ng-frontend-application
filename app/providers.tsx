@@ -1,5 +1,6 @@
 'use client';
 
+import { StoreProvider, store } from '@/components/jotai/store';
 import GlobalStyles from '@/styles/GlobalStyles';
 import { darkTheme } from '@/styles/theme';
 import { createSyncStoragePersister } from '@tanstack/query-sync-storage-persister';
@@ -7,6 +8,7 @@ import { QueryCache, QueryClient, QueryClientConfig } from '@tanstack/react-quer
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { PersistQueryClientProvider } from '@tanstack/react-query-persist-client';
 import { Provider } from 'jotai';
+import { DevTools } from 'jotai-devtools';
 import { ReactNode, useState } from 'react';
 import { ThemeProvider } from 'styled-components';
 
@@ -58,10 +60,13 @@ export const ClientProviders = ({ children }: { children: ReactNode }) => {
 			<PersistQueryClientProvider client={queryClient} persistOptions={persistOptions}>
 				<Provider>
 					<ThemeProvider theme={darkTheme}>
-						<GlobalStyles />
+						<StoreProvider>
+							<GlobalStyles />
 
-						{/* ======= End Store ======== */}
-						{children}
+							{/* ======= End Store ======== */}
+							{children}
+							<DevTools store={store} />
+						</StoreProvider>
 					</ThemeProvider>
 					<ReactQueryDevtools initialIsOpen={false} />
 				</Provider>
